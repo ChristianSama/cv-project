@@ -1,8 +1,9 @@
 import { Component } from "react";
+import SwitchText from "./SwitchText";
 
 class Education extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
 
   render() {
@@ -10,11 +11,11 @@ class Education extends Component {
       <div className="educationInfo">
           <label>
             Level:
-            <input type="text" id="level"></input>
+            <SwitchText edit={this.props.edit}/>
           </label>
           <label>
             Institution:
-            <input type="text" id="institution"></input>
+            <SwitchText edit={this.props.edit}/>
           </label>
       </div>
     );
