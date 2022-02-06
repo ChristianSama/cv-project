@@ -17,6 +17,14 @@ class General extends Component {
           Last name:
           <SwitchText edit={this.props.edit}/>
         </label>
+        <label>
+          Phone Number:
+          <SwitchText edit={this.props.edit}/>
+        </label>
+        <label>
+          E-mail:
+          <SwitchText edit={this.props.edit}/>
+        </label>
       </div>
     );
   }

@@ -13,7 +13,7 @@ class SwitchText extends React.Component {
 
   render() {
     if (this.props.edit) {
-      return (<input type="text" value={this.state.value} onChange={this.handleChange}/>)
+      return (<input type="text" className="switch-text" value={this.state.value} onChange={this.handleChange}/>)
     } else {
       return(<span>{this.state.value}</span>)
     }
