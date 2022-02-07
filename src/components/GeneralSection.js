@@ -1,7 +1,7 @@
 import { Component } from "react";
 import SwitchText from "./SwitchText";
 
-class General extends Component {
+class GeneralSection extends Component {
   constructor(props) {
     super(props);
   }
@@ -30,4 +30,4 @@ class General extends Component {
   }
 }
 
-export default General;
+export default GeneralSection;

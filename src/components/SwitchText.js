@@ -3,19 +3,13 @@ import React from 'react'
 class SwitchText extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''}
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({value: event.target.value})
   }
 
   render() {
     if (this.props.edit) {
-      return (<input type="text" className="switch-text" value={this.state.value} onChange={this.handleChange}/>)
+      return (<input id={this.props.id} type="text" className="switch-text" value={this.props.content} onChange={this.props.handleChange} name={this.props.name}/>)
     } else {
-      return(<span>{this.state.value}</span>)
+      return(<span>this.props.content</span>)
     }
   }
 }

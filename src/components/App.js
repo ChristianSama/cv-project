@@ -1,6 +1,6 @@
 import { Component } from "react";
-import General from "./General"
-import Education from "./Education"
+import GeneralSection from "./GeneralSection"
+import EducationSection from "./EducationSection"
 
 class App extends Component {
 
@@ -21,8 +21,8 @@ class App extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <General edit={this.state.edit}/>
-          <Education edit={this.state.edit}/>
+          <GeneralSection edit={this.state.edit}/>
+          <EducationSection edit={this.state.edit}/>
           <input type="submit" value="Submit"/>
         </form>
       </div>
