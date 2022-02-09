@@ -4,6 +4,19 @@ import SwitchText from "./SwitchText";
 class GeneralSection extends Component {
   constructor(props) {
     super(props);
+    this.state = {firstname: '',
+                  lastname: '',
+                  phone: '',
+                  email: ''};
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    const target = event.target;
+    const name = target.name;
+    this.setState({
+      [name]: target.value
+    })
   }
 
   render() {
@@ -11,19 +24,19 @@ class GeneralSection extends Component {
       <div className="generalInfo">
         <label>
           First name:
-          <SwitchText edit={this.props.edit}/>
+          <SwitchText name='firstname' edit={this.props.edit} content={this.state.firstname} handleChange={this.handleChange}/>
         </label>
         <label>
           Last name:
-          <SwitchText edit={this.props.edit}/>
+          <SwitchText name='lastname' edit={this.props.edit} content={this.state.lastname} handleChange={this.handleChange}/>
         </label>
         <label>
           Phone Number:
-          <SwitchText edit={this.props.edit}/>
+          <SwitchText name='phone' edit={this.props.edit} content={this.state.phone} handleChange={this.handleChange}/>
         </label>
         <label>
           E-mail:
-          <SwitchText edit={this.props.edit}/>
+          <SwitchText name='email' edit={this.props.edit} content={this.state.email} handleChange={this.handleChange}/>
         </label>
       </div>
     );

@@ -9,7 +9,7 @@ class SwitchText extends React.Component {
     if (this.props.edit) {
       return (<input id={this.props.id} type="text" className="switch-text" value={this.props.content} onChange={this.props.handleChange} name={this.props.name}/>)
     } else {
-      return(<span>this.props.content</span>)
+      return(<span>{this.props.content}</span>)
     }
   }
 }
