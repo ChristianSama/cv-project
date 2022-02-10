@@ -1,6 +1,7 @@
 import { Component } from "react";
 import GeneralSection from "./GeneralSection"
 import EducationSection from "./EducationSection"
+import ExperienceSection from "./ExperienceSection"
 
 class App extends Component {
 
@@ -19,10 +20,15 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="app">
+        <h1>CV visualizer</h1>
         <form onSubmit={this.handleSubmit}>
+          <h2>General Information</h2>
           <GeneralSection edit={this.state.edit}/>
+          <h2>Education</h2>
           <EducationSection edit={this.state.edit}/>
+          <h2>Work Experience</h2>
+          <ExperienceSection edit={this.state.edit}/>
           <input type="submit" value="Submit"/>
         </form>
       </div>

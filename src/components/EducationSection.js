@@ -8,14 +8,7 @@ class EducationSection extends React.Component {
     this.state = {educations: []}
     this.addEducation = this.addEducation.bind(this);
     this.handleChange = this.handleChange.bind(this);
-  }
-
-  addEducation(event) {
-    event.preventDefault();
-    const newEducation = {id: uniqid(), level: '', institution: ''};
-    this.setState((prevState) => ({
-      educations: [...prevState.educations, newEducation]
-    }));
+    this.deleteEducation = this.deleteEducation.bind(this);
   }
 
   handleChange(event) {
@@ -32,13 +25,27 @@ class EducationSection extends React.Component {
     })
   }
 
+  addEducation(event) {
+    event.preventDefault();
+    const newEducation = {id: uniqid(), level: '', institution: ''};
+    this.setState((prevState) => ({
+      educations: [...prevState.educations, newEducation]
+    }));
+  }
+
+  deleteEducation(event) {
+    event.preventDefault();
+    let filteredArr = this.state.educations.filter(item => item.id !== event.target.id);
+    this.setState({educations: filteredArr});
+  }
+
   render() {
     return (
       <div className="educationSection">
         {this.state.educations.map(ed => (
-          <Education key={ed.id} id={ed.id} edit={this.props.edit} level={ed.level} institution={ed.institution} handleChange={this.handleChange}></Education>
+          <Education key={ed.id} edit={this.props.edit} handleChange={this.handleChange} data={ed} deleteEducation={this.deleteEducation}/>
         ))} 
-        <button onClick={this.addEducation}>Add</button>
+        <button onClick={this.addEducation}>Add Education</button>
       </div>
     )
   }
@@ -51,15 +58,18 @@ class Education extends React.Component {
 
   render() {
     return (
-      <div>
-        <label>
-          Level:
-          <SwitchText id={this.props.id} edit={this.props.edit} content={this.props.level} name="level" handleChange={this.props.handleChange}/>
-        </label>
-        <label>
-          Institution:
-          <SwitchText id={this.props.id} edit={this.props.edit} content={this.props.institution} name="institution" handleChange={this.props.handleChange}/>
-        </label>
+      <div className="education">
+        <div className="input-fields">
+          <label>
+            Level:
+            <SwitchText id={this.props.data.id} edit={this.props.edit} content={this.props.data.level} name="level" handleChange={this.props.handleChange}/>
+          </label>
+          <label>
+            Institution:
+            <SwitchText id={this.props.data.id} edit={this.props.edit} content={this.props.data.institution} name="institution" handleChange={this.props.handleChange}/>
+          </label>
+        </div>
+        <button id={this.props.data.id} onClick={this.props.deleteEducation}>Delete</button>
       </div>
     );
   }
