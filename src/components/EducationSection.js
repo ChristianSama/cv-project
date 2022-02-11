@@ -67,6 +67,7 @@ class Education extends React.Component {
             Level:
             {this.props.edit 
               ? (<select id={this.props.data.id} name="level" value={this.props.data.level} onChange={this.props.handleChange}>
+                  <option value="">--Select an option--</option>
                   <option value="Elementary">Elementary</option>
                   <option value="Highschool">Highschool</option>
                   <option value="Undergraduate">Undergraduate</option>

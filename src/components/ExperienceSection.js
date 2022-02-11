@@ -75,6 +75,7 @@ class Experience extends React.Component {
             Time in position (months):
             {this.props.edit 
               ? (<select id={this.props.data.id} name="time" value={this.props.data.time} onChange={this.props.handleChange}>
+                  <option value="">--Select an option--</option>
                   <option value="less than 1 year">less than 1 year</option>
                   <option value="1 to 3 years">1 to 3 years</option>
                   <option value="more than 3 years">more than 3 years</option>
