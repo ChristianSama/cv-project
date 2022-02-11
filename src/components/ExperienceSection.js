@@ -1,6 +1,8 @@
 import React from 'react';
 import SwitchText from './SwitchText';
 import uniqid from 'uniqid';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 class ExperienceSection extends React.Component {
   constructor(props) {
@@ -33,20 +35,21 @@ class ExperienceSection extends React.Component {
     }));
   }
 
-  deleteExperience(event) {
-    event.preventDefault();
-    let filteredArr = this.state.experiences.filter(item => item.id !== event.target.id);
+  deleteExperience(id, event) {
+    let filteredArr = this.state.experiences.filter(item => item.id !== id);
     this.setState({experiences: filteredArr});
   }
 
   render() {
     return (
-      <div className="experienceSection">
+      <section className="experienceSection">
         {this.state.experiences.map(exp => (
           <Experience key={exp.id} id={exp.id} edit={this.props.edit} handleChange={this.handleChange} data={exp} deleteExperience={this.deleteExperience}/>
         ))} 
-        <button onClick={this.addExperience}>Add Experience</button>
-      </div>
+        {this.props.edit &&
+          <button onClick={this.addExperience}>Add Experience</button>
+        }
+      </section>
     )
   }
 }
@@ -59,19 +62,30 @@ class Experience extends React.Component {
   render() {
     return(
       <div className='experience'>
-        <label>
-          Company Name:
-          <SwitchText id={this.props.data.id} edit={this.props.edit} content={this.props.data.company} name="company" handleChange={this.props.handleChange}></SwitchText>
-        </label>
-        <label>
-          Position:
-          <SwitchText id={this.props.data.id} edit={this.props.edit} content={this.props.data.position} name="position" handleChange={this.props.handleChange}></SwitchText>
-        </label>
-        <label>
-          Time in position (months):
-          <SwitchText id={this.props.data.id} edit={this.props.edit} content={this.props.data.time} name="time" handleChange={this.props.handleChange}></SwitchText>
-        </label>
-        <button id={this.props.data.id} onClick={this.props.deleteExperience}>Delete</button>
+        <div className='input-fields'>
+          <label>
+            Company Name:
+            <SwitchText id={this.props.data.id} edit={this.props.edit} content={this.props.data.company} name="company" handleChange={this.props.handleChange}></SwitchText>
+          </label>
+          <label>
+            Position:
+            <SwitchText id={this.props.data.id} edit={this.props.edit} content={this.props.data.position} name="position" handleChange={this.props.handleChange}></SwitchText>
+          </label>
+          <label>
+            Time in position (months):
+            {this.props.edit 
+              ? (<select id={this.props.data.id} name="time" value={this.props.data.time} onChange={this.props.handleChange}>
+                  <option value="less than 1 year">less than 1 year</option>
+                  <option value="1 to 3 years">1 to 3 years</option>
+                  <option value="more than 3 years">more than 3 years</option>
+                </select>)
+              : <span>{this.props.data.time}</span>
+            }
+          </label>
+        </div>
+        {this.props.edit && 
+          <button className='delete-button' id={this.props.data.id} onClick={() => this.props.deleteExperience(this.props.data.id)}><FontAwesomeIcon icon={faTrashCan}/></button>
+        }
       </div>
     );
   }

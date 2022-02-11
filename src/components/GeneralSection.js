@@ -21,7 +21,7 @@ class GeneralSection extends Component {
 
   render() {
     return (
-      <div className="generalInfo">
+      <section className="generalInfo">
         <label>
           First name:
           <SwitchText name='firstname' edit={this.props.edit} content={this.state.firstname} handleChange={this.handleChange}/>
@@ -38,7 +38,7 @@ class GeneralSection extends Component {
           E-mail:
           <SwitchText name='email' edit={this.props.edit} content={this.state.email} handleChange={this.handleChange}/>
         </label>
-      </div>
+      </section>
     );
   }
 }

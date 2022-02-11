@@ -1,6 +1,8 @@
 import React from "react";
 import SwitchText from "./SwitchText";
 import uniqid from "uniqid"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 class EducationSection extends React.Component {
   constructor(props) {
@@ -33,20 +35,21 @@ class EducationSection extends React.Component {
     }));
   }
 
-  deleteEducation(event) {
-    event.preventDefault();
-    let filteredArr = this.state.educations.filter(item => item.id !== event.target.id);
+  deleteEducation(id, event) {
+    let filteredArr = this.state.educations.filter(item => item.id !== id);
     this.setState({educations: filteredArr});
   }
 
   render() {
     return (
-      <div className="educationSection">
+      <section className="educationSection">
         {this.state.educations.map(ed => (
           <Education key={ed.id} edit={this.props.edit} handleChange={this.handleChange} data={ed} deleteEducation={this.deleteEducation}/>
         ))} 
-        <button onClick={this.addEducation}>Add Education</button>
-      </div>
+        {this.props.edit &&
+          <button onClick={this.addEducation}>Add Education</button>
+        }
+      </section>
     )
   }
 }
@@ -62,14 +65,24 @@ class Education extends React.Component {
         <div className="input-fields">
           <label>
             Level:
-            <SwitchText id={this.props.data.id} edit={this.props.edit} content={this.props.data.level} name="level" handleChange={this.props.handleChange}/>
+            {this.props.edit 
+              ? (<select id={this.props.data.id} name="level" value={this.props.data.level} onChange={this.props.handleChange}>
+                  <option value="Elementary">Elementary</option>
+                  <option value="Highschool">Highschool</option>
+                  <option value="Undergraduate">Undergraduate</option>
+                  <option value="Graduate">Graduate</option>
+                </select>)
+              : <span>{this.props.data.level}</span>
+            }
           </label>
           <label>
             Institution:
             <SwitchText id={this.props.data.id} edit={this.props.edit} content={this.props.data.institution} name="institution" handleChange={this.props.handleChange}/>
           </label>
         </div>
-        <button id={this.props.data.id} onClick={this.props.deleteEducation}>Delete</button>
+        {this.props.edit && 
+          <button className="delete-button" id={this.props.data.id} onClick={() => this.props.deleteEducation(this.props.data.id)}><FontAwesomeIcon icon={faTrashCan}/></button>
+        }
       </div>
     );
   }
