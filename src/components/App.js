@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import GeneralSection from "./GeneralSection"
-import EducationSection from "./EducationSection"
-import ExperienceSection from "./ExperienceSection"
+import EducationSegment from "./EducationSegment"
+import ExperienceSegment from "./ExperienceSegment"
 
 function App() {
   const [isEditing, setIsEditing] = useState(true);
@@ -19,9 +19,9 @@ function App() {
               <h2>General Information</h2>
               <GeneralSection edit={isEditing}/>
               <h2>Education</h2>
-              <EducationSection edit={isEditing}/>
+              <EducationSegment edit={isEditing}/>
               <h2>Work Experience</h2>
-              <ExperienceSection edit={isEditing}/>
+              <ExperienceSegment edit={isEditing}/>
               <button type="submit" value={formButtonValue}>{formButtonValue}</button>
             </form>
           </div>
