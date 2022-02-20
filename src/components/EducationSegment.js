@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import SwitchText from "./SwitchText";
 import uniqid from "uniqid"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

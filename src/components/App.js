@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import GeneralSection from "./GeneralSection"
+import React, { useState } from 'react';
+import GeneralSegment from "./GeneralSegment"
 import EducationSegment from "./EducationSegment"
 import ExperienceSegment from "./ExperienceSegment"
 
@@ -17,7 +17,7 @@ function App() {
             <h1>CV visualizer</h1>
             <form onSubmit={handleSubmit}>
               <h2>General Information</h2>
-              <GeneralSection edit={isEditing}/>
+              <GeneralSegment edit={isEditing}/>
               <h2>Education</h2>
               <EducationSegment edit={isEditing}/>
               <h2>Work Experience</h2>
